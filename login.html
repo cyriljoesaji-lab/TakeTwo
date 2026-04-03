@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up - TakeTwo</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            DEFAULT: '#0a0a0f',
+                            card: '#16161e',
+                            lighter: '#1f1f2e'
+                        },
+                        accent: {
+                            purple: '#b026ff',
+                            blue: '#00f0ff',
+                            pink: '#ff007f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center font-sans p-4 transition-colors duration-500">
+
+    <div class="w-full max-w-5xl bg-white dark:bg-dark-card rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_50px_rgba(176,38,255,0.05)] border border-gray-200 dark:border-white/10 overflow-hidden flex flex-col md:flex-row relative z-10">
+        
+        <!-- Left Side: Visual / Branding -->
+        <div class="md:w-5/12 p-10 flex flex-col justify-between relative overflow-hidden bg-gradient-to-br from-dark to-dark-card border-b md:border-b-0 md:border-r border-gray-200 dark:border-white/5">
+            <!-- Background Decoration -->
+            <div class="absolute -top-32 -left-32 w-64 h-64 bg-accent-purple/20 rounded-full blur-[80px]"></div>
+            <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-accent-blue/20 rounded-full blur-[80px]"></div>
+            
+            <a href="index.html" class="relative z-10 flex items-center gap-2 mb-12">
+                <i class="fa-solid fa-film text-accent-purple text-2xl"></i>
+                <span class="font-display font-bold text-2xl tracking-wide text-white">TakeTwo</span>
+            </a>
+            
+            <div class="relative z-10 mb-8">
+                <h2 class="text-3xl font-display font-bold text-white mb-4 line-clamp-3">Your next great project starts here.</h2>
+                <p class="text-gray-400">Join thousands of filmmakers, actors, and crew members building the future of cinema.</p>
+            </div>
+            
+            <!-- Floating Elements / Social Proof -->
+            <div class="relative z-10 relative hidden md:block mt-auto pb-4">
+               <div class="flex -space-x-3 opacity-80">
+                   <img src="https://ui-avatars.com/api/?name=Director&background=00f0ff&color=fff" class="w-8 h-8 rounded-full border border-dark">
+                   <img src="https://ui-avatars.com/api/?name=Actor&background=ff007f&color=fff" class="w-8 h-8 rounded-full border border-dark">
+                   <img src="https://ui-avatars.com/api/?name=Crew&background=b026ff&color=fff" class="w-8 h-8 rounded-full border border-dark">
+               </div>
+               <p class="text-xs text-gray-500 mt-2">Connecting creative visionaries.</p>
+            </div>
+        </div>
+
+        <!-- Right Side: Forms -->
+        <div class="md:w-7/12 p-8 md:p-12 relative bg-white dark:bg-dark-card transition-colors">
+            
+            <!-- Theme Toggle absolute top right -->
+            <button id="theme-toggle" class="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-dark-lighter transition relative overflow-hidden group">
+                <i class="fa-solid fa-sun text-yellow-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 dark:opacity-100 transition-opacity duration-300"></i>
+                <i class="fa-solid fa-moon text-gray-800 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 dark:opacity-0 transition-opacity duration-300 cursor-pointer"></i>
+                <span class="w-8 h-8 block"></span>
+            </button>
+
+            <!-- Form Toggle Tabs -->
+            <div class="flex gap-6 border-b border-gray-200 dark:border-white/10 mb-8">
+                <button id="tab-login" class="pb-3 text-lg font-medium border-b-2 border-accent-blue text-gray-900 dark:text-white transition-all">Log In</button>
+                <button id="tab-signup" class="pb-3 text-lg font-medium border-b-2 border-transparent text-gray-500 hover:text-gray-800 dark:hover:text-gray-300 transition-all">Sign Up</button>
+            </div>
+
+            <!-- Google OAuth Button -->
+            <button class="w-full flex items-center justify-center gap-3 bg-gray-50 dark:bg-dark-lighter border border-gray-200 dark:border-white/10 rounded-xl py-3 hover:bg-gray-100 dark:hover:bg-white/5 transition-colors font-medium mb-6">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" class="w-5 h-5" alt="Google">
+                Continue with Google
+            </button>
+            
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-px bg-gray-200 dark:bg-white/10 flex-1"></div>
+                <span class="text-xs text-gray-400 uppercase tracking-widest">Or with email</span>
+                <div class="h-px bg-gray-200 dark:bg-white/10 flex-1"></div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="form-login" class="space-y-5 block animate-fadeUp">
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email Address</label>
+                    <input type="email" placeholder="you@example.com" class="w-full bg-white dark:bg-dark-lighter border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors text-gray-900 dark:text-white" required>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                        <a href="#" class="text-xs text-accent-blue hover:underline">Forgot password?</a>
+                    </div>
+                    <input type="password" placeholder="••••••••" class="w-full bg-white dark:bg-dark-lighter border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-blue focus:ring-1 focus:ring-accent-blue transition-colors text-gray-900 dark:text-white" required>
+                </div>
+                <button type="button" onclick="window.location.href='discover.html'" class="w-full bg-gradient-to-r from-accent-purple to-accent-blue text-white font-bold rounded-xl py-4 mt-4 shadow-[0_0_15px_rgba(176,38,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-all duration-300 transform hover:-translate-y-1">
+                    Enter the Studio
+                </button>
+            </form>
+
+            <!-- Signup Form (Hidden by default) -->
+            <form id="form-signup" class="space-y-4 hidden animate-fadeUp">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">First Name</label>
+                        <input type="text" class="w-full bg-white dark:bg-dark-lighter border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-blue text-gray-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Last Name</label>
+                        <input type="text" class="w-full bg-white dark:bg-dark-lighter border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-blue text-gray-900 dark:text-white">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Email Address</label>
+                    <input type="email" class="w-full bg-white dark:bg-dark-lighter border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-blue text-gray-900 dark:text-white">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Select Your Role</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" class="peer hidden" value="actor" checked>
+                            <div class="text-center py-2 px-1 rounded-lg border border-gray-200 dark:border-white/10 peer-checked:border-accent-pink peer-checked:bg-accent-pink/10 transition-colors dark:text-gray-300">Actor</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" class="peer hidden" value="director">
+                            <div class="text-center py-2 px-1 rounded-lg border border-gray-200 dark:border-white/10 peer-checked:border-accent-blue peer-checked:bg-accent-blue/10 transition-colors dark:text-gray-300">Director</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" class="peer hidden" value="crew">
+                            <div class="text-center py-2 px-1 rounded-lg border border-gray-200 dark:border-white/10 peer-checked:border-accent-purple peer-checked:bg-accent-purple/10 transition-colors dark:text-gray-300">Crew</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" class="peer hidden" value="enthusiast">
+                            <div class="text-center py-2 px-1 rounded-lg border border-gray-200 dark:border-white/10 peer-checked:border-accent-gold peer-checked:bg-accent-gold/10 transition-colors dark:text-gray-300">Fan</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Choose Password</label>
+                    <input type="password" class="w-full bg-white dark:bg-dark-lighter border border-gray-300 dark:border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-accent-blue text-gray-900 dark:text-white">
+                </div>
+
+                <button type="button" onclick="window.location.href='discover.html'" class="w-full bg-gradient-to-r from-accent-purple to-accent-blue text-white font-bold rounded-xl py-4 mt-2 shadow-[0_0_15px_rgba(176,38,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-all duration-300 transform hover:-translate-y-1">
+                    Create Profile
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Background Cinematic Glows -->
+    <div class="absolute inset-0 bg-dark pointer-events-none -z-10 opacity-0 dark:opacity-100 transition-opacity duration-500">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-blue/5 rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-0 left-0 w-[800px] h-[800px] bg-accent-purple/5 rounded-full blur-[150px]"></div>
+    </div>
+
+    <script>
+        // Simple Tab Logic
+        const tabLogin = document.getElementById('tab-login');
+        const tabSignup = document.getElementById('tab-signup');
+        const formLogin = document.getElementById('form-login');
+        const formSignup = document.getElementById('form-signup');
+
+        tabLogin.addEventListener('click', () => {
+            tabLogin.classList.add('border-accent-blue', 'text-gray-900', 'dark:text-white');
+            tabLogin.classList.remove('border-transparent', 'text-gray-500');
+            tabSignup.classList.remove('border-accent-blue', 'text-gray-900', 'dark:text-white');
+            tabSignup.classList.add('border-transparent', 'text-gray-500');
+            
+            formLogin.classList.remove('hidden');
+            formSignup.classList.add('hidden');
+        });
+
+        tabSignup.addEventListener('click', () => {
+            tabSignup.classList.add('border-accent-blue', 'text-gray-900', 'dark:text-white');
+            tabSignup.classList.remove('border-transparent', 'text-gray-500');
+            tabLogin.classList.remove('border-accent-blue', 'text-gray-900', 'dark:text-white');
+            tabLogin.classList.add('border-transparent', 'text-gray-500');
+            
+            formSignup.classList.remove('hidden');
+            formLogin.classList.add('hidden');
+        });
+
+        // Handle Signup Form Submission
+        const signupForm = document.getElementById('form-signup'); // Corrected ID
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = signupForm.querySelector('input[type="text"]:nth-of-type(1)').value;
+            const lastName = signupForm.querySelector('input[type="text"]:nth-of-type(2)').value;
+            const email = signupForm.querySelector('input[type="email"]').value;
+            const password = signupForm.querySelector('input[type="password"]').value;
+            const selectedRoleElement = signupForm.querySelector('input[name="role"]:checked');
+            const role = selectedRoleElement ? selectedRoleElement.value : '';
+
+            if (!firstName || !lastName || !email || !password || !role) {
+                alert('Please fill out all fields and select a role.');
+                return;
+            }
+
+            const name = `${firstName} ${lastName}`;
+
+            // Create user object
+            const user = {
+                name: name,
+                email: email,
+                roles: [role], // Storing as an array for consistency, even if single role
+                isLoggedIn: true,
+                avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=ff007f&color=fff`
+            };
+
+            // Save to LocalStorage
+            localStorage.setItem('takeTwoUser', JSON.stringify(user));
+            
+            // Redirect to Discover
+            window.location.href = 'discover.html';
+        });
+
+        // Handle Login Form Submission
+        const loginForm = document.getElementById('form-login'); // Corrected ID
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = loginForm.querySelector('input[type="email"]').value;
+            const password = loginForm.querySelector('input[type="password"]').value; // Get password for potential future validation
+            
+            if (!email || !password) {
+                alert('Please enter your email and password.');
+                return;
+            }
+
+            // Check if user exists in local storage
+            const existingUserRaw = localStorage.getItem('takeTwoUser');
+            if (existingUserRaw) {
+                const existingUser = JSON.parse(existingUserRaw);
+                // Simple mock login check: email matches
+                if (existingUser.email === email) {
+                    existingUser.isLoggedIn = true;
+                    localStorage.setItem('takeTwoUser', JSON.stringify(existingUser));
+                    window.location.href = 'discover.html';
+                    return;
+                }
+            }
+
+            // If not found or email doesn't match, mock a generic login for demo purposes
+            const demoUser = {
+                name: email.split('@')[0], // Use part of email as name
+                email: email,
+                roles: ['Enthusiast'], // Default role for demo
+                isLoggedIn: true,
+                avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(email.split('@')[0])}&background=00f0ff&color=fff`
+            };
+            localStorage.setItem('takeTwoUser', JSON.stringify(demoUser));
+            window.location.href = 'discover.html';
+        });
+
+        // Handle Google Auth Mock
+        const googleBtns = document.querySelectorAll('.fa-google').forEach(icon => {
+            const btn = icon.closest('button');
+            if(btn) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Mock Google User
+                    const googleUser = {
+                        name: "Google User",
+                        email: "google.user@gmail.com",
+                        roles: ["Filmmaker"],
+                        isLoggedIn: true,
+                        avatar: `https://ui-avatars.com/api/?name=Google+User&background=b026ff&color=fff`
+                    };
+                    
+                    // Show a quick visual cue
+                    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-xl mr-2"></i> Connecting...`;
+                    
+                    setTimeout(() => {
+                        localStorage.setItem('takeTwoUser', JSON.stringify(googleUser));
+                        window.location.href = 'discover.html';
+                    }, 800);
+                });
+            }
+        });
+
+        // Theme Toggle (Simplified for this page)
+        const htmlElement = document.documentElement;
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'light') htmlElement.classList.remove('dark');
+        else htmlElement.classList.add('dark');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

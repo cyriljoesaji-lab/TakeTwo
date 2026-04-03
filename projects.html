@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Projects Collaboration - TakeTwo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { DEFAULT: '#0a0a0f', card: '#16161e', lighter: '#1f1f2e' },
+                        accent: { purple: '#b026ff', blue: '#00f0ff', pink: '#ff007f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-500">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-4">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fa-solid fa-film text-accent-purple text-xl"></i>
+                <span class="font-display font-bold text-xl dark:text-white">TakeTwo</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="discover.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Discover</a>
+                <a href="auditions.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Auditions</a>
+                <a href="projects.html" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-purple to-accent-blue">Projects</a>
+                <a href="#" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Messages <span class="bg-accent-pink text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">3</span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-accent-purple">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+                <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-accent-purple">
+                    <img src="https://ui-avatars.com/api/?name=You&background=b026ff&color=fff" alt="My Profile">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="py-12 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Project <span class="text-accent-purple">Board</span></h1>
+                <p class="text-gray-500 dark:text-gray-400 max-w-xl">Find short films to crew for, pitch your script, or collaborate on indie features with passionate filmmakers.</p>
+            </div>
+            
+            <button class="px-6 py-4 bg-gradient-to-r from-accent-purple to-accent-blue text-white rounded-xl font-bold shadow-[0_0_15px_rgba(176,38,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-shadow duration-300 flex items-center justify-center gap-2 whitespace-nowrap hidden md:flex">
+                <i class="fa-solid fa-plus"></i> Pitch a New Project
+            </button>
+        </div>
+    </header>
+
+    <!-- Projects Grid -->
+    <section class="py-8 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            
+            <!-- Quick Crew Match Tags -->
+            <div class="flex w-full overflow-x-auto pb-4 gap-3 scrollbar-hide mb-8">
+                <button class="px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 dark:text-white text-sm whitespace-nowrap hover:border-accent-purple hover:text-accent-purple transition-colors bg-white dark:bg-dark-card shadow-sm"><i class="fa-solid fa-video text-gray-400 mr-2"></i> Need Cinematographer</button>
+                <button class="px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 dark:text-white text-sm whitespace-nowrap hover:border-accent-purple hover:text-accent-purple transition-colors bg-white dark:bg-dark-card shadow-sm"><i class="fa-solid fa-pen-nib text-gray-400 mr-2"></i> Need Writer/Script Editor</button>
+                <button class="px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 dark:text-white text-sm whitespace-nowrap hover:border-accent-purple hover:text-accent-purple transition-colors bg-white dark:bg-dark-card shadow-sm"><i class="fa-solid fa-scissors text-gray-400 mr-2"></i> Need Post-Production Editor</button>
+                <button class="px-4 py-2 rounded-full border border-gray-200 dark:border-white/10 dark:text-white text-sm whitespace-nowrap hover:border-accent-purple hover:text-accent-purple transition-colors bg-white dark:bg-dark-card shadow-sm"><i class="fa-solid fa-music text-gray-400 mr-2"></i> Need Composer</button>
+            </div>
+
+            <!-- Masonry-style Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+                <!-- Javascript Injection -->
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        const projectsData = [
+            { 
+                title: "Echoes of Jupiter", 
+                type: "Sci-Fi Short", 
+                status: "Pre-Production", 
+                author: "Sarah J.", 
+                authorRole: "Director",
+                desc: "A stylized retro-sci-fi short film about isolation on a space station. We secured 50% funding and have an incredible script. Looking for a Director of Photography with experience lighting neon/analog sets.",
+                needs: ["Cinematographer", "VFX Artist"],
+                loc: "London Area / Remote Edit",
+                color: "blue"
+            },
+            { 
+                title: "The Weekend Getaway", 
+                type: "Horror Feature", 
+                status: "Development", 
+                author: "Marcus T.", 
+                authorRole: "Producer",
+                desc: "Indie horror film set in a snowy cabin. We have a skeleton crew but need a dedicated sound mixer and boom operator who can handle extreme cold conditions. Paid gig.",
+                needs: ["Sound Mixer", "Boom Operator", "Makeup FX"],
+                loc: "Vancouver, BC",
+                color: "pink"
+            },
+            { 
+                title: "City in Motion", 
+                type: "Documentary", 
+                status: "Post-Production", 
+                author: "Elena R.", 
+                authorRole: "Director",
+                desc: "We just finished wrapping 2 months of shooting street dancers across NY. We have over 40 hours of footage and need a skilled narrative editor to help find the story in the chaos.",
+                needs: ["Lead Editor", "Colorist", "Music Composer"],
+                loc: "Remote",
+                color: "purple"
+            },
+            { 
+                title: "Untitled Coffee Comedy", 
+                type: "Web Series", 
+                status: "Scripting", 
+                author: "David C.", 
+                authorRole: "Writer",
+                desc: "I have written 4 episodes of a web series taking place entirely in a coffee shop. Seeking a co-writer or script doctor to punch up the dialogue before we start casting next month.",
+                needs: ["Co-Writer", "Script Editor"],
+                loc: "Remote / LA",
+                color: "gold"
+            }
+        ];
+
+        const grid = document.getElementById('projects-grid');
+        
+        projectsData.forEach((proj, i) => {
+            const delay = i * 150;
+            const needsHtml = proj.needs.map(n => `<span class="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-xs px-2 py-1 rounded text-gray-700 dark:text-gray-300">${n}</span>`).join('');
+            
+            grid.innerHTML += `
+                <div class="bg-white dark:bg-dark-card rounded-2xl border border-gray-200 dark:border-white/10 p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 opacity-0 animate-[fadeUp_0.5s_ease_forwards] flex flex-col h-full" style="animation-delay: ${delay}ms;">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-accent-${proj.color}/10 text-accent-${proj.color} text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm border border-accent-${proj.color}/30">${proj.type}</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500"><i class="fa-solid fa-circle text-[8px] mr-1 text-green-500"></i> ${proj.status}</span>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold dark:text-white mb-2 leading-tight">${proj.title}</h3>
+                    
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 rounded-full bg-gray-200 dark:bg-dark-lighter overflow-hidden border border-gray-300 dark:border-white/20">
+                            <img src="https://ui-avatars.com/api/?name=${proj.author}&background=random&color=fff" class="w-full h-full object-cover">
+                        </div>
+                        <span class="text-xs text-gray-600 dark:text-gray-400">Posted by <span class="font-bold text-gray-900 dark:text-white">${proj.author}</span> (${proj.authorRole})</span>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">
+                        ${proj.desc}
+                    </p>
+                    
+                    <div class="mb-6">
+                        <p class="text-[10px] uppercase font-bold text-gray-400 mb-2 tracking-wider">Crew Needed</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${needsHtml}
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-100 dark:border-white/5 pt-4 flex justify-between items-center mt-auto">
+                        <div class="text-xs text-gray-500 bg-gray-50 dark:bg-dark-lighter py-1 px-2 rounded">
+                            <i class="fa-solid fa-location-dot"></i> ${proj.loc}
+                        </div>
+                        <button class="text-sm font-bold text-accent-purple hover:text-accent-blue transition-colors group">
+                            Message <i class="fa-solid fa-arrow-right text-xs ml-1 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Theme
+        const htmlElement = document.documentElement;
+        if (localStorage.getItem('theme') === 'light') htmlElement.classList.remove('dark');
+        else htmlElement.classList.add('dark');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            document.querySelector('.fa-moon').classList.toggle('hidden');
+            document.querySelector('.fa-moon').classList.toggle('dark:hidden');
+            document.querySelector('.fa-sun').classList.toggle('hidden');
+            document.querySelector('.fa-sun').classList.toggle('dark:inline');
+        });
+    </script>
+</body>
+</html>

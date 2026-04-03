@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - TakeTwo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { DEFAULT: '#0a0a0f', card: '#16161e', lighter: '#1f1f2e' },
+                        accent: { purple: '#b026ff', blue: '#00f0ff', pink: '#ff007f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 h-screen overflow-hidden font-sans transition-colors duration-500 flex flex-col">
+
+    <!-- Compact Navigation -->
+    <nav class="bg-white dark:bg-dark-card border-b border-gray-200 dark:border-white/10 py-3 relative z-40 shrink-0">
+        <div class="container mx-auto px-4 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fa-solid fa-film text-accent-purple text-lg"></i>
+                <span class="font-display font-bold text-lg dark:text-white">TakeTwo</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="discover.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Discover</a>
+                <a href="auditions.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Auditions</a>
+                <a href="projects.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+                <a href="messages.html" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-pink">Messages</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-accent-blue">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+                <a href="profile.html" class="w-8 h-8 rounded-full overflow-hidden border-2 border-accent-blue hover:scale-110 transition-transform">
+                    <img src="https://ui-avatars.com/api/?name=You&background=00f0ff&color=fff">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chat App Layout -->
+    <main class="flex-1 flex overflow-hidden">
+        
+        <!-- Sidebar: Chat List -->
+        <aside class="w-full md:w-80 lg:w-96 bg-white dark:bg-dark border-r border-gray-200 dark:border-white/10 flex flex-col shrink-0">
+            <!-- Search header -->
+            <div class="p-4 border-b border-gray-200 dark:border-white/10">
+                <h2 class="font-bold text-xl mb-4 dark:text-white flex justify-between items-center">
+                    Inbox <span class="bg-accent-pink text-white text-xs px-2 py-0.5 rounded-full">3 New</span>
+                </h2>
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                    <input type="text" placeholder="Search messages..." class="w-full bg-gray-100 dark:bg-dark-card border-none rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-accent-blue text-gray-900 dark:text-white transition-colors">
+                </div>
+            </div>
+
+            <!-- Contacts List -->
+            <div class="flex-1 overflow-y-auto w-full custom-scrollbar" id="contact-list">
+                
+                <!-- Contact 1 (Active) -->
+                <div class="p-4 border-b border-gray-100 dark:border-white/5 flex gap-3 cursor-pointer bg-accent-blue/5 hover:bg-accent-blue/10 transition-colors border-l-4 border-l-accent-blue active-contact">
+                    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-dark relative">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&w=100&q=80" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-dark"></div>
+                    </div>
+                    <div class="flex-1 overflow-hidden">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-sm dark:text-white truncate">David Chen (Director)</h4>
+                            <span class="text-[10px] text-gray-400 font-medium">10:42 AM</span>
+                        </div>
+                        <p class="text-xs text-gray-900 dark:text-white font-medium truncate">Are you available for a taped audition this week?</p>
+                    </div>
+                </div>
+
+                <!-- Contact 2 -->
+                <div class="p-4 border-b border-gray-100 dark:border-white/5 flex gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-card transition-colors">
+                    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-dark">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&w=100&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 overflow-hidden">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-sm dark:text-gray-200 truncate">Sarah Jenkins (DP)</h4>
+                            <span class="text-[10px] text-gray-400">Yesterday</span>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 truncate">Thanks for sharing the moodboard! I'll review it.</p>
+                    </div>
+                </div>
+
+                <!-- Contact 3 (Unread) -->
+                <div class="p-4 border-b border-gray-100 dark:border-white/5 flex gap-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-dark-card transition-colors">
+                    <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-dark relative">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&w=100&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-1 overflow-hidden relative pr-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="font-bold text-sm dark:text-white truncate">Leo Vance (Editor)</h4>
+                            <span class="text-[10px] text-accent-pink font-bold">Mon</span>
+                        </div>
+                        <p class="text-xs text-gray-900 dark:text-white font-medium truncate">I just sent over the v2 export clip.</p>
+                        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-accent-pink rounded-full"></div>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <section class="flex-1 flex flex-col bg-gray-50 dark:bg-[#0d0d14] relative hidden md:flex">
+            
+            <!-- Chat Header -->
+            <div class="h-16 border-b border-gray-200 dark:border-white/10 bg-white/80 dark:bg-dark-card/80 backdrop-blur-sm flex items-center justify-between px-6 shrink-0 relative z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&w=100&q=80" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm dark:text-white">David Chen</h3>
+                        <p class="text-[10px] text-green-500 font-medium">Online</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button class="text-gray-400 hover:text-accent-blue transition-colors"><i class="fa-solid fa-phone"></i></button>
+                    <button class="text-gray-400 hover:text-accent-purple transition-colors"><i class="fa-solid fa-video"></i></button>
+                    <button class="text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors ml-2"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+            </div>
+
+            <!-- Messages Stream -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar flex flex-col pt-8">
+                
+                <div class="text-center text-xs text-gray-400 font-medium my-4">Today, 10:15 AM</div>
+                
+                <!-- Recipient Msg -->
+                <div class="flex gap-3 max-w-[80%] animate-[fadeUp_0.3s_ease_forwards]">
+                    <div class="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-auto hidden md:block">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&w=100&q=80">
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-dark-card border border-gray-200 dark:border-white/5 p-3 rounded-2xl rounded-bl-sm text-sm text-gray-800 dark:text-gray-200 shadow-sm">
+                            Hey! I saw your profile and loved your showreel. We are casting for the lead in our upcoming indie feature "The Midnight Sun".
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recipient Msg 2 -->
+                <div class="flex gap-3 max-w-[80%] animate-[fadeUp_0.3s_ease_forwards]" style="animation-delay: 100ms">
+                    <div class="w-8 h-8 rounded-full shrink-0 hidden md:block"></div>
+                    <div>
+                        <div class="bg-white dark:bg-dark-card border border-gray-200 dark:border-white/5 p-3 rounded-2xl rounded-tl-sm text-sm text-gray-800 dark:text-gray-200 shadow-sm mt-1">
+                            Are you available for a taped audition this week? I can send over the sides and script sample.
+                        </div>
+                        <div class="text-[10px] text-gray-400 mt-1 ml-1">10:42 AM</div>
+                    </div>
+                </div>
+
+                <!-- Sender Msg -->
+                <div class="flex gap-3 max-w-[80%] self-end flex-row-reverse animate-[fadeUp_0.3s_ease_forwards]" style="animation-delay: 300ms">
+                    <div class="w-8 h-8 rounded-full overflow-hidden shrink-0 mt-auto hidden md:block border border-accent-blue/30">
+                        <img src="https://ui-avatars.com/api/?name=You&background=00f0ff&color=fff">
+                    </div>
+                    <div>
+                        <div class="bg-gradient-to-br from-accent-blue to-accent-purple p-3 rounded-2xl rounded-br-sm text-sm text-white shadow-[0_5px_15px_rgba(0,240,255,0.2)]">
+                            Yes, definitely! I am very interested. Please send the script over and I can have a tape to you by Thursday.
+                        </div>
+                        <div class="text-[10px] text-gray-400 mt-1 text-right mr-1">Just now <i class="fa-solid fa-check-double text-accent-blue ml-1"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="h-20 bg-white dark:bg-dark-card border-t border-gray-200 dark:border-white/10 shrink-0 px-4 py-3 flex items-center gap-3 relative z-10">
+                
+                <button class="w-10 h-10 rounded-full text-gray-400 hover:text-accent-pink hover:bg-gray-100 dark:hover:bg-white/5 transition-all text-lg shrink-0">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full text-gray-400 hover:text-accent-purple hover:bg-gray-100 dark:hover:bg-white/5 transition-all text-lg shrink-0">
+                    <i class="fa-regular fa-face-smile"></i>
+                </button>
+                
+                <input type="text" placeholder="Type a message..." class="flex-1 bg-gray-100 dark:bg-dark border-none rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent-blue text-gray-900 dark:text-white transition-colors h-full">
+                
+                <button class="w-12 h-12 rounded-xl bg-accent-blue text-dark font-bold hover:shadow-[0_0_15px_rgba(0,240,255,0.5)] transition-all flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        // Theme Toggle
+        const htmlElement = document.documentElement;
+        if (localStorage.getItem('theme') === 'light') htmlElement.classList.remove('dark');
+        else htmlElement.classList.add('dark');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            document.querySelector('.fa-moon').classList.toggle('hidden');
+            document.querySelector('.fa-moon').classList.toggle('dark:hidden');
+            document.querySelector('.fa-sun').classList.toggle('hidden');
+            document.querySelector('.fa-sun').classList.toggle('dark:inline');
+        });
+    </script>
+</body>
+</html>

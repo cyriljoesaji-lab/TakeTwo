@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Talent - TakeTwo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { DEFAULT: '#0a0a0f', card: '#16161e', lighter: '#1f1f2e' },
+                        accent: { purple: '#b026ff', blue: '#00f0ff', pink: '#ff007f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-500">
+
+    <!-- Navigation (Simplified for subpages) -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-4">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fa-solid fa-film text-accent-purple text-xl"></i>
+                <span class="font-display font-bold text-xl dark:text-white">TakeTwo</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="discover.html" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-purple to-accent-blue">Discover</a>
+                <a href="auditions.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Auditions</a>
+                <a href="projects.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+                <a href="messages.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Messages <span class="bg-accent-pink text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">3</span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-accent-blue">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+                <a href="profile.html" class="w-8 h-8 rounded-full overflow-hidden border-2 border-accent-purple hover:scale-110 transition-transform">
+                    <img src="https://ui-avatars.com/api/?name=You&background=b026ff&color=fff" alt="My Profile">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header & Filters -->
+    <header class="py-12 border-b border-gray-200 dark:border-white/5 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-accent-purple/5 to-accent-blue/5 pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Discover <span class="text-accent-blue">Talent</span></h1>
+            <p class="text-gray-500 dark:text-gray-400 max-w-2xl mb-8">Connect with the industry's best rising stars and seasoned professionals.</p>
+            
+            <!-- Filters Bar -->
+            <div class="flex flex-wrap gap-4 items-center bg-white dark:bg-dark-card p-4 rounded-2xl border border-gray-200 dark:border-white/10 shadow-sm">
+                
+                <div class="flex-1 min-w-[200px] relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <input id="search-input" type="text" placeholder="Search by name or skills..." class="w-full bg-gray-50 dark:bg-dark-lighter border-none rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:ring-1 focus:ring-accent-blue text-sm dark:text-white">
+                </div>
+                
+                <select id="role-select" class="bg-gray-50 dark:bg-dark-lighter border-none rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent-purple text-gray-700 dark:text-gray-300">
+                    <option value="">Role: All</option>
+                    <option value="actor">Actor</option>
+                    <option value="director">Director</option>
+                    <option value="cinematographer">Cinematographer</option>
+                    <option value="writer">Writer</option>
+                    <option value="editor">Editor</option>
+                    <option value="music composer">Music Composer</option>
+                </select>
+                
+                <select id="loc-select" class="bg-gray-50 dark:bg-dark-lighter border-none rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent-blue text-gray-700 dark:text-gray-300">
+                    <option value="">Location: Any</option>
+                    <option value="los angeles">Los Angeles</option>
+                    <option value="new york">New York</option>
+                    <option value="london">London</option>
+                    <option value="atlanta">Atlanta</option>
+                    <option value="toronto">Toronto</option>
+                    <option value="mumbai">Mumbai</option>
+                    <option value="chicago">Chicago</option>
+                    <option value="remote">Remote</option>
+                </select>
+                
+                <select id="exp-select" class="bg-gray-50 dark:bg-dark-lighter border-none rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent-pink text-gray-700 dark:text-gray-300">
+                    <option value="">Experience: Any</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="professional">Professional</option>
+                </select>
+
+                <button id="filter-btn" class="bg-dark dark:bg-white text-white dark:text-dark px-6 py-3 rounded-xl text-sm font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
+                    Filter
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Talent Grid -->
+    <section class="py-12 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 perspective-1000" id="talent-grid">
+                
+                <!-- Script will populate these cards -->
+                
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button class="px-8 py-3 rounded-full border border-gray-300 dark:border-white/20 text-sm font-medium hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
+                    Load More Profiles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mock Data for Discover Page
+        const talentData = [
+            { name: "Elena Rossi", role: "Actor", level: "Professional", loc: "Los Angeles", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&w=400&q=80", color: "pink", tags: ["Drama", "Action"] },
+            { name: "David Chen", role: "Director", level: "Intermediate", loc: "New York", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&w=400&q=80", color: "blue", tags: ["Indie", "Sci-Fi"] },
+            { name: "Sarah Jenkins", role: "Cinematographer", level: "Professional", loc: "London", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&w=400&q=80", color: "purple", tags: ["Red Epic", "Arri"] },
+            { name: "Marcus Johnson", role: "Actor", level: "Beginner", loc: "Atlanta", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&w=400&q=80", color: "pink", tags: ["Comedy", "Voice"] },
+            { name: "Chloe Adams", role: "Writer", level: "Professional", loc: "Toronto", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&w=400&q=80", color: "gold", tags: ["Feature", "TV"] },
+            { name: "Leo Vance", role: "Editor", level: "Intermediate", loc: "Remote", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&w=400&q=80", color: "blue", tags: ["Premiere", "Resolve"] },
+            { name: "Anita Kapoor", role: "Music Composer", level: "Professional", loc: "Mumbai", img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&w=400&q=80", color: "purple", tags: ["Orchestral", "Synth"] },
+            { name: "James Woods", role: "Actor", level: "Intermediate", loc: "Chicago", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&w=400&q=80", color: "pink", tags: ["Theater", "Commercials"] },
+        ];
+
+        const grid = document.getElementById('talent-grid');
+        
+        function renderTalent(data) {
+            grid.innerHTML = '';
+            if (data.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500 font-medium">No talents found matching your criteria. Try adjusting your filters.</div>';
+                return;
+            }
+            data.forEach((user, index) => {
+                const delay = (index % 8) * 100;
+                grid.innerHTML += `
+                    <div class="bg-white dark:bg-dark-card rounded-2xl border border-gray-100 dark:border-white/5 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-3d opacity-0 animate-[fadeUp_0.5s_ease_forwards]" style="animation-delay: ${delay}ms;">
+                        <div class="h-40 overflow-hidden relative group">
+                            <img src="${user.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="${user.name}">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <h3 class="font-bold text-lg">${user.name}</h3>
+                                <p class="text-xs text-accent-${user.color} font-medium tracking-wide border border-accent-${user.color}/50 bg-accent-${user.color}/10 px-2 py-0.5 rounded-full inline-block mt-1 backdrop-blur-sm">${user.role}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                                    <i class="fa-solid fa-location-dot"></i> ${user.loc}
+                                </div>
+                                <div class="text-xs font-medium px-2 py-1 rounded bg-gray-100 dark:bg-dark-lighter text-gray-700 dark:text-gray-300">
+                                    ${user.level}
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                ${user.tags.map(t => `<span class="text-[10px] uppercase tracking-wider bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 px-2 py-1 rounded-sm">${t}</span>`).join('')}
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <button onclick="window.location.href='profile.html'" class="flex-1 py-2 text-sm font-medium bg-gray-100 dark:bg-dark-lighter hover:bg-gray-200 dark:hover:bg-white/10 rounded-lg transition-colors">
+                                    View Profile
+                                </button>
+                                <button onclick="window.location.href='messages.html'" class="w-10 flex items-center justify-center bg-gray-100 dark:bg-dark-lighter hover:text-accent-blue rounded-lg transition-colors">
+                                    <i class="fa-regular fa-comment"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        function applyFilters() {
+            const search = document.getElementById('search-input').value.toLowerCase();
+            const role = document.getElementById('role-select').value.toLowerCase();
+            const loc = document.getElementById('loc-select').value.toLowerCase();
+            const exp = document.getElementById('exp-select').value.toLowerCase();
+            
+            const filtered = talentData.filter(user => {
+                const matchSearch = user.name.toLowerCase().includes(search) || user.tags.some(t => t.toLowerCase().includes(search));
+                const matchRole = role === "" || user.role.toLowerCase() === role;
+                const matchLoc = loc === "" || user.loc.toLowerCase() === loc;
+                const matchExp = exp === "" || user.level.toLowerCase() === exp;
+                return matchSearch && matchRole && matchLoc && matchExp;
+            });
+            
+            renderTalent(filtered);
+        }
+
+        // Initialize and bind events
+        renderTalent(talentData);
+        document.getElementById('filter-btn').addEventListener('click', applyFilters);
+        document.getElementById('search-input').addEventListener('input', applyFilters);
+        document.getElementById('role-select').addEventListener('change', applyFilters);
+        document.getElementById('loc-select').addEventListener('change', applyFilters);
+        document.getElementById('exp-select').addEventListener('change', applyFilters);
+
+        // Theme Toggle logic
+        const htmlElement = document.documentElement;
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'light') htmlElement.classList.remove('dark');
+        else htmlElement.classList.add('dark');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            // Toggle icon classes
+            const moon = document.querySelector('.fa-moon');
+            const sun = document.querySelector('.fa-sun');
+            moon.classList.toggle('hidden');
+            moon.classList.toggle('dark:hidden');
+            sun.classList.toggle('hidden');
+            sun.classList.toggle('dark:inline');
+        });
+    </script>
+</body>
+</html>

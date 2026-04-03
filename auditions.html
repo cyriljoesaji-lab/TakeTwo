@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditions & Casting - TakeTwo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { DEFAULT: '#0a0a0f', card: '#16161e', lighter: '#1f1f2e' },
+                        accent: { purple: '#b026ff', blue: '#00f0ff', pink: '#ff007f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-500">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-4">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fa-solid fa-film text-accent-purple text-xl"></i>
+                <span class="font-display font-bold text-xl dark:text-white">TakeTwo</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="discover.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Discover</a>
+                <a href="auditions.html" class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-pink to-accent-purple">Auditions</a>
+                <a href="projects.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+                <a href="#" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Messages <span class="bg-accent-pink text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">3</span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-accent-pink">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+                <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-accent-pink">
+                    <img src="https://ui-avatars.com/api/?name=You&background=ff007f&color=fff" alt="My Profile">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header & Actions -->
+    <header class="py-12 border-b border-gray-200 dark:border-white/5 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-accent-pink/5 to-accent-purple/5 pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Casting <span class="text-accent-pink">&</span> Auditions</h1>
+                <p class="text-gray-500 dark:text-gray-400 max-w-xl">Find your next big role or cast the perfect actor for your masterpiece. Browse open casting calls globally or locally.</p>
+            </div>
+            
+            <button class="px-6 py-4 bg-gradient-to-r from-accent-pink to-accent-purple text-white rounded-xl font-bold shadow-[0_0_15px_rgba(255,0,127,0.3)] hover:shadow-[0_0_25px_rgba(176,38,255,0.5)] transition-shadow duration-300 flex items-center justify-center gap-2 whitespace-nowrap hidden md:flex">
+                <i class="fa-solid fa-bullhorn"></i> Post a Casting Call
+            </button>
+        </div>
+    </header>
+
+    <!-- Auditions List -->
+    <section class="py-12 bg-gray-50 dark:bg-dark">
+        <div class="container mx-auto px-6 flex flex-col lg:flex-row gap-8">
+            
+            <!-- Filters Sidebar -->
+            <div class="lg:w-1/4">
+                <div class="bg-white dark:bg-dark-card border border-gray-200 dark:border-white/10 rounded-2xl p-6 sticky top-24">
+                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-sliders text-accent-pink"></i> Filters</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Search Words</label>
+                            <input type="text" placeholder="e.g. Lead, Villain..." class="w-full bg-gray-50 dark:bg-dark-lighter border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-accent-pink text-gray-900 dark:text-white">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Project Type</label>
+                            <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="accent-accent-pink"> Feature Film</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="accent-accent-pink"> Short Film</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-accent-pink"> Commercial</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="accent-accent-pink"> Theater</label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Union Status</label>
+                            <select class="w-full bg-gray-50 dark:bg-dark-lighter border border-gray-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-300">
+                                <option>Any</option>
+                                <option>Non-Union</option>
+                                <option>SAG-AFTRA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed -->
+            <div class="lg:w-3/4 space-y-6" id="audition-list">
+                <!-- Dynamically Populated Auditions -->
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        const auditionsData = [
+            { title: "Lead Female for Neo-Noir Thriller", proj: "The Midnight Sun", type: "Feature Film", union: "SAG-AFTRA", loc: "Los Angeles / Local Hire", gender: "Female", age: "25-35", pay: "$300/day + Meals", dead: "Oct 15", posted: "2 hours ago", desc: "Seeking a strong, enigmatic lead for a stylish neo-noir thriller shooting in downtown LA. Character requires extensive emotional range and comfortable with mild stunt work." },
+            { title: "Supporting Actor (Comedic Relief)", proj: "Coffee & Catastrophes", type: "Short Film", union: "Non-Union", loc: "New York / Remote Tape", gender: "Any", age: "20-40", pay: "$150/day (Deferred)", dead: "Oct 18", posted: "5 hours ago", desc: "Looking for an actor with impeccable comedic timing to play the quirky barista who accidentally poisons the entire neighborhood espresso machine." },
+            { title: "Antagonist / Villain", proj: "CyberPulse 2077", type: "Indie Feature", union: "Non-Union", loc: "Atlanta, GA", gender: "Male", age: "40-60", pay: "$250/day", dead: "Nov 01", posted: "1 day ago", desc: "Cyberpunk aesthetic film looking for an imposing presence. Heavy prosthetics will be required. Previous experience in sci-fi/action heavily preferred." }
+        ];
+
+        const list = document.getElementById('audition-list');
+        
+        auditionsData.forEach((audition, i) => {
+            const delay = i * 150;
+            list.innerHTML += `
+                <div class="bg-white dark:bg-dark-card rounded-2xl border border-gray-200 dark:border-white/10 p-6 shadow-sm hover:border-accent-pink/50 dark:hover:border-accent-pink/50 transition-colors opacity-0 animate-[fadeUp_0.5s_ease_forwards] relative overflow-hidden group" style="animation-delay: ${delay}ms;">
+                    
+                    <div class="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-accent-pink to-accent-purple opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-4 gap-4">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-accent-pink/10 text-accent-pink text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm border border-accent-pink/30">${audition.type}</span>
+                                <span class="text-xs text-gray-500">${audition.posted}</span>
+                            </div>
+                            <h2 class="text-xl md:text-2xl font-bold dark:text-white mb-1">${audition.title}</h2>
+                            <p class="text-gray-500 text-sm font-medium">Project: <span class="text-gray-800 dark:text-gray-300">"${audition.proj}"</span></p>
+                        </div>
+                        <div class="text-left md:text-right">
+                            <div class="font-bold text-lg dark:text-white">${audition.pay}</div>
+                            <div class="text-xs text-red-500 font-medium">Deadline: ${audition.dead}</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">
+                        ${audition.desc}
+                    </p>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 pt-4 border-t border-gray-100 dark:border-white/5">
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">Location</p>
+                            <p class="text-sm font-medium dark:text-gray-200"><i class="fa-solid fa-location-dot text-accent-purple text-xs mr-1"></i> ${audition.loc}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">Gender / Age</p>
+                            <p class="text-sm font-medium dark:text-gray-200">${audition.gender}, ${audition.age}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 mb-1">Union Status</p>
+                            <p class="text-sm font-medium dark:text-gray-200">${audition.union}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button class="px-6 py-2 bg-gray-900 dark:bg-white text-white dark:text-dark rounded-xl text-sm font-bold hover:scale-105 transition-transform">
+                            View Script & Apply
+                        </button>
+                        <button class="px-4 py-2 bg-gray-100 dark:bg-dark-lighter hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl transition-colors">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+
+        // Theme
+        const htmlElement = document.documentElement;
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'light') htmlElement.classList.remove('dark');
+        else htmlElement.classList.add('dark');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            document.querySelector('.fa-moon').classList.toggle('hidden');
+            document.querySelector('.fa-moon').classList.toggle('dark:hidden');
+            document.querySelector('.fa-sun').classList.toggle('hidden');
+            document.querySelector('.fa-sun').classList.toggle('dark:inline');
+        });
+    </script>
+</body>
+</html>

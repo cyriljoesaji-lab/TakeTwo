@@ -1,0 +1,104 @@
+/* Global Styles & Animations */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0f; 
+}
+::-webkit-scrollbar-thumb {
+    background: #1f1f2e; 
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b026ff; 
+}
+
+/* Utilities */
+.text-accent-gold { color: #ffd700; }
+
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.card-3d:hover {
+    transform: rotateY(-5deg) rotateX(5deg) translateY(-10px);
+    box-shadow: -15px 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.btn-glow {
+    position: relative;
+    z-index: 1;
+}
+.btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: inherit;
+    filter: blur(15px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.btn-glow:hover::before {
+    opacity: 0.6;
+}
+
+/* Cinematic Loader Animations */
+body.loading {
+    overflow: hidden;
+}
+
+.clapperboard-stick {
+    transform-origin: bottom left;
+    animation: clap 2s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+}
+
+.stripe-bg {
+    background: repeating-linear-gradient(
+        -45deg,
+        #fff,
+        #fff 10px,
+        #000 10px,
+        #000 20px
+    );
+}
+
+@keyframes clap {
+    0% { transform: rotate(-30deg); }
+    50% { transform: rotate(-35deg); }
+    70% { transform: rotate(0deg); } /* SNAP */
+    100% { transform: rotate(0deg); }
+}
+
+/* Title appearing letter by letter */
+.letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.letter:nth-child(1) { animation-delay: 0.2s; }
+.letter:nth-child(2) { animation-delay: 0.3s; }
+.letter:nth-child(3) { animation-delay: 0.4s; }
+.letter:nth-child(4) { animation-delay: 0.5s; }
+.letter:nth-child(5) { animation-delay: 0.6s; }
+.letter:nth-child(6) { animation-delay: 0.7s; }
+.letter:nth-child(7) { animation-delay: 0.8s; }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - TakeTwo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        dark: { DEFAULT: '#0a0a0f', card: '#16161e', lighter: '#1f1f2e' },
+                        accent: { purple: '#b026ff', blue: '#00f0ff', pink: '#ff007f', gold: '#ffd700' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-dark text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-500">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white/80 dark:bg-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 py-4">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fa-solid fa-film text-accent-purple text-xl"></i>
+                <span class="font-display font-bold text-xl dark:text-white">TakeTwo</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <a href="discover.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Discover</a>
+                <a href="auditions.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Auditions</a>
+                <a href="projects.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Projects</a>
+                <a href="messages.html" class="font-medium text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors">Messages <span class="bg-accent-pink text-white text-[10px] px-1.5 py-0.5 rounded-full ml-1">3</span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button id="theme-toggle" class="p-2 text-gray-500 hover:text-accent-blue">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+                <a href="profile.html" class="w-8 h-8 rounded-full overflow-hidden border-2 border-accent-blue">
+                    <img src="https://ui-avatars.com/api/?name=You&background=00f0ff&color=fff" alt="My Profile">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header (Cover & Avatar) -->
+    <header class="relative animate-[fadeUp_0.5s_ease_forwards]">
+        <!-- Cover Photo -->
+        <div class="h-64 md:h-80 w-full overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&w=1920&q=80" 
+                 class="w-full h-full object-cover" alt="Cover Photo">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-50 dark:from-dark to-transparent"></div>
+            <!-- Edit Cover Button for Owner -->
+            <button class="absolute top-6 right-6 bg-black/40 backdrop-blur-md text-white hover:bg-black/60 px-4 py-2 rounded-lg text-sm transition-colors border border-white/20">
+                <i class="fa-solid fa-camera mr-2"></i> Edit Cover
+            </button>
+        </div>
+
+        <div class="container mx-auto px-6 relative -mt-24 md:-mt-32">
+            <div class="flex flex-col md:flex-row gap-6 md:items-end">
+                <!-- Avatar -->
+                <div class="relative group">
+                    <div class="w-32 h-32 md:w-48 md:h-48 rounded-3xl overflow-hidden border-4 border-gray-50 dark:border-dark shrink-0 shadow-2xl bg-dark-lighter">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&w=400&q=80" 
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Elena Rossi">
+                    </div>
+                    <button class="absolute bottom-4 right-4 bg-accent-blue text-dark w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform hidden group-hover:flex">
+                        <i class="fa-solid fa-pen"></i>
+                    </button>
+                </div>
+
+                <!-- Basic Info & Actions -->
+                <div class="flex-1 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h1 class="text-3xl md:text-5xl font-display font-bold dark:text-white mb-2 flex items-center gap-3">
+                            Elena Rossi
+                            <i class="fa-solid fa-circle-check text-accent-blue text-xl" title="Verified Professional"></i>
+                        </h1>
+                        <p class="text-xl text-gray-600 dark:text-gray-300 font-medium mb-3">Lead Actor &middot; <span class="text-accent-pink">Professional</span></p>
+                        <div class="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> Los Angeles, CA</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-plane"></i> Will Travel</span>
+                            <span class="flex items-center gap-1"><i class="fa-solid fa-users"></i> SAG-AFTRA</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex gap-3">
+                        <a href="messages.html" class="px-8 py-3 bg-gradient-to-r from-accent-purple to-accent-blue text-white font-bold rounded-xl shadow-[0_0_15px_rgba(176,38,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-all transform hover:-translate-y-1">
+                            Message
+                        </a>
+                        <button class="px-5 py-3 bg-white dark:bg-dark-card border border-gray-200 dark:border-white/10 hover:bg-gray-100 dark:hover:bg-white/5 rounded-xl transition-colors text-gray-700 dark:text-gray-300 shadow-sm">
+                            <i class="fa-solid fa-download mr-2"></i> Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Profile Content -->
+    <main class="container mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12">
+        
+        <!-- Left Column: About & Details -->
+        <div class="lg:w-1/3 space-y-8 animate-[fadeUp_0.5s_ease_forwards]" style="animation-delay: 100ms;">
+            
+            <!-- Bio -->
+            <div class="bg-white dark:bg-dark-card rounded-3xl border border-gray-100 dark:border-white/5 p-6 shadow-sm">
+                <h3 class="font-bold text-lg mb-4 dark:text-white flex justify-between items-center">
+                    About Me
+                    <i class="fa-solid fa-pen text-gray-400 hover:text-accent-blue cursor-pointer text-sm"></i>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">
+                    Classically trained actor with 10 years of experience in both stage and screen. 
+                    Best known for my work in indie thrillers and grounded character dramas. 
+                    I thrive in highly collaborative environments and am always looking for challenging scripts that push the envelope.
+                </p>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <p class="text-gray-400 mb-1 text-xs">Height</p>
+                        <p class="font-medium dark:text-gray-200">5'8" (173cm)</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 mb-1 text-xs">Eye Color</p>
+                        <p class="font-medium dark:text-gray-200">Hazel</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 mb-1 text-xs">Hair Color</p>
+                        <p class="font-medium dark:text-gray-200">Brunette</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 mb-1 text-xs">Playing Age</p>
+                        <p class="font-medium dark:text-gray-200">25 - 35</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills & Tags -->
+            <div class="bg-white dark:bg-dark-card rounded-3xl border border-gray-100 dark:border-white/5 p-6 shadow-sm">
+                <h3 class="font-bold text-lg mb-4 dark:text-white">Genres & Special Skills</h3>
+                
+                <div class="mb-6">
+                    <p class="text-xs text-gray-500 uppercase tracking-wider mb-2">Preferred Genres</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-accent-pink/10 text-accent-pink border border-accent-pink/20 px-3 py-1.5 rounded-lg font-medium">Drama</span>
+                        <span class="text-xs bg-accent-blue/10 text-accent-blue border border-accent-blue/20 px-3 py-1.5 rounded-lg font-medium">Thriller</span>
+                        <span class="text-xs bg-purple-500/10 text-purple-500 border border-purple-500/20 px-3 py-1.5 rounded-lg font-medium">Action</span>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-xs text-gray-500 uppercase tracking-wider mb-2">Capabilities</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-md">Stage Combat</span>
+                        <span class="text-xs bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-md">Wire Work</span>
+                        <span class="text-xs bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-md">Horseback Riding</span>
+                        <span class="text-xs bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 px-3 py-1.5 rounded-md">Fluent Italian</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="bg-white dark:bg-dark-card rounded-3xl border border-gray-100 dark:border-white/5 p-6 shadow-sm">
+                <h3 class="font-bold text-lg mb-4 dark:text-white">Connect</h3>
+                <div class="space-y-3">
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group border border-transparent hover:border-gray-200 dark:hover:border-white/10">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-imdb text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold dark:text-white">IMDb Profile</p>
+                            <p class="text-xs text-gray-500">Elena Rossi (IV)</p>
+                        </div>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors group border border-transparent hover:border-gray-200 dark:hover:border-white/10">
+                        <div class="w-10 h-10 rounded-full bg-pink-100 dark:bg-pink-500/10 flex items-center justify-center text-pink-500 group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold dark:text-white">Instagram</p>
+                            <p class="text-xs text-gray-500">@elena.acts</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Right Column: Media & Portfolio -->
+        <div class="lg:w-2/3 space-y-8 animate-[fadeUp_0.5s_ease_forwards]" style="animation-delay: 200ms;">
+            
+            <!-- Featured Video Showreel -->
+            <div class="bg-white dark:bg-dark-card rounded-3xl border border-gray-100 dark:border-white/5 p-6 shadow-sm">
+                <h3 class="font-bold text-2xl mb-4 dark:text-white flex items-center gap-3">
+                    <i class="fa-solid fa-play text-accent-purple"></i> Showreel 2026
+                </h3>
+                <div class="w-full aspect-video bg-black rounded-2xl overflow-hidden relative group cursor-pointer shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                        <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/50 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                            <i class="fa-solid fa-play ml-2 text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Gallery (Headshots) -->
+            <div class="bg-white dark:bg-dark-card rounded-3xl border border-gray-100 dark:border-white/5 p-6 shadow-sm">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-2xl dark:text-white flex items-center gap-3">
+                        <i class="fa-solid fa-camera-retro text-accent-pink"></i> Headshots & Gallery
+                    </h3>
+                    <button class="text-sm text-accent-blue hover:underline">View All</button>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden cursor-pointer group card-3d">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&w=400&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden cursor-pointer group card-3d">
+                        <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&w=400&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="aspect-[3/4] rounded-xl overflow-hidden cursor-pointer group card-3d hidden md:block">
+                        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-4.0.3&w=400&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Previous Experience Board -->
+            <div class="bg-white dark:bg-dark-card rounded-3xl border border-gray-100 dark:border-white/5 p-6 shadow-sm">
+                <h3 class="font-bold text-2xl mb-6 dark:text-white flex items-center gap-3">
+                    <i class="fa-solid fa-film text-accent-blue"></i> Credits
+                </h3>
+                
+                <div class="space-y-4">
+                    <!-- Project 1 -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl border border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <div>
+                            <h4 class="font-bold text-lg dark:text-white">Neon Nights (Feature Film)</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Role: <span class="text-accent-pink font-medium">Detective Sarah Cortez (Lead)</span></p>
+                        </div>
+                        <div class="mt-2 md:mt-0 text-right">
+                            <span class="text-xs bg-gray-200 dark:bg-dark text-gray-700 dark:text-gray-300 px-3 py-1 rounded border border-gray-300 dark:border-white/10">2025</span>
+                            <p class="text-xs text-gray-400 mt-1">Dir. James Cameron</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl border border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <div>
+                            <h4 class="font-bold text-lg dark:text-white">The Coffee Shop (Web Series)</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Role: <span class="text-accent-blue font-medium">Maria (Supporting)</span></p>
+                        </div>
+                        <div class="mt-2 md:mt-0 text-right">
+                            <span class="text-xs bg-gray-200 dark:bg-dark text-gray-700 dark:text-gray-300 px-3 py-1 rounded border border-gray-300 dark:border-white/10">2024</span>
+                            <p class="text-xs text-gray-400 mt-1">Dir. Ava DuVernay</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl border border-gray-100 dark:border-white/5 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                        <div>
+                            <h4 class="font-bold text-lg dark:text-white">A Midsummer Night (Theater)</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Role: <span class="text-accent-purple font-medium">Helena</span></p>
+                        </div>
+                        <div class="mt-2 md:mt-0 text-right">
+                            <span class="text-xs bg-gray-200 dark:bg-dark text-gray-700 dark:text-gray-300 px-3 py-1 rounded border border-gray-300 dark:border-white/10">2023</span>
+                            <p class="text-xs text-gray-400 mt-1">The Globe Theatre</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 dark:bg-dark-card border-t border-gray-200 dark:border-white/10 py-12 mt-12">
+        <div class="container mx-auto px-6 text-center text-gray-500 text-sm flex justify-between items-center">
+            <span>&copy; 2026 TakeTwo Platform.</span>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-accent-purple"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:text-accent-pink"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const htmlElement = document.documentElement;
+        if (localStorage.getItem('theme') === 'light') htmlElement.classList.remove('dark');
+        else htmlElement.classList.add('dark');
+
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.setItem('theme', htmlElement.classList.contains('dark') ? 'dark' : 'light');
+            document.querySelector('.fa-moon').classList.toggle('hidden');
+            document.querySelector('.fa-moon').classList.toggle('dark:hidden');
+            document.querySelector('.fa-sun').classList.toggle('hidden');
+            document.querySelector('.fa-sun').classList.toggle('dark:inline');
+        });
+    </script>
+</body>
+</html>
